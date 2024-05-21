@@ -1,0 +1,22 @@
+[user]
+	email = 1146421+ghelouis@users.noreply.github.com
+	name = Guillaume Hélouis
+[push]
+	default = simple
+	autoSetupRemote = true
+[pull]
+	rebase = false
+[alias]
+	st = status
+	lg = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	c = commit
+	cm = commit -m
+	cam = commit -am
+	amd = commit --amend
+	d = diff
+	ph = push
+	pl = pull
+	co = checkout
+	cob = checkout -b
+[color]
+	ui = auto
