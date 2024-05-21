@@ -1,0 +1,14 @@
+# press up arrow to search history of commands starting with typed text so far
+$if Bash
+  "\e[A":history-search-backward
+  "\e[B":history-search-forward
+$endif
+
+# display matches if more than one possible completion
+set show-all-if-ambiguous on
+
+# perform filename matchinga and completion in a case-insensitive fashion
+set completion-ignore-case on
+
+# display different colors per file type in completions
+set colored-stats on
