@@ -1,0 +1,163 @@
+# i3 config
+# doc: http://i3wm.org/docs/userguide.html
+
+set $mod Mod1
+
+# font for window titles
+font pango:Terminus 8
+
+# mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# don't follow the mouse
+focus_follows_mouse no
+
+
+# == Key Bindings ==
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+a kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+m focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+m move right
+
+# split in horizontal/vertical orientation
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+p focus parent
+
+# focus the child container
+bindsym $mod+c focus child
+
+# make the currently focused window a scratchpad
+bindsym $mod+Shift+o move scratchpad
+
+# show the first scratchpad window
+bindsym $mod+o scratchpad show
+
+# switch to workspace
+bindsym $mod+ampersand workspace 1
+bindsym $mod+eacute workspace 2
+bindsym $mod+quotedbl workspace 3
+bindsym $mod+apostrophe workspace 4
+bindsym $mod+parenleft workspace 5
+bindsym $mod+minus workspace 6
+bindsym $mod+egrave workspace 7
+bindsym $mod+underscore workspace 8
+bindsym $mod+ccedilla workspace 9
+bindsym $mod+agrave workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+ampersand move container to workspace 1; workspace 1
+bindsym $mod+Shift+eacute move container to workspace 2; workspace 2
+bindsym $mod+Shift+quotedbl move container to workspace 3; workspace 3
+bindsym $mod+Shift+apostrophe move container to workspace 4; workspace 4
+bindsym $mod+Shift+5 move container to workspace 5; workspace 5
+bindsym $mod+Shift+minus move container to workspace 6; workspace 6
+bindsym $mod+Shift+egrave move container to workspace 7; workspace 7
+bindsym $mod+Shift+underscore move container to workspace 8; workspace 8
+bindsym $mod+Shift+ccedilla move container to workspace 9; workspace 9
+bindsym $mod+Shift+agrave move container to workspace 10; workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# lock
+bindsym Mod4+l exec --no-startup-id scrot /tmp/screen.png -e 'convert -scale 5% -scale 2000% $f /tmp/screen.png' && i3lock -ni /tmp/screen.png
+
+# start firefox
+bindsym Ctrl+$mod+F exec firefox
+
+# Function keys
+bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+
+# == Modes ==
+
+# resize window
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Up resize grow height 10 px or 10 ppt
+        bindsym Down resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# ide (avoid some key binding collisions)
+mode "ide" {
+  bindsym $mod+i mode "default"
+
+  # switch to workspace
+  bindsym $mod+ampersand workspace 1
+  bindsym $mod+eacute workspace 2
+  bindsym $mod+quotedbl workspace 3
+  bindsym $mod+apostrophe workspace 4
+  bindsym $mod+parenleft workspace 5
+  bindsym $mod+minus workspace 6
+  bindsym $mod+egrave workspace 7
+  bindsym $mod+underscore workspace 8
+  bindsym $mod+ccedilla workspace 9
+  bindsym $mod+agrave workspace 10
+}
+
+bindsym $mod+r mode "resize"
+bindsym $mod+i mode "ide"
+
+
+# == Bar ==
+
+bar {
+  status_command $HOME/bin/conky-i3bar
+  font pango:Terminus 8
+  colors {
+    background #161616
+  }
+}
+
+
+# == Color Scheme ==
+
+client.focused #586e75 #586e75 #fdf6e3 #268bd2
+client.focused_inactive #073642 #073642 #93a1a1 #002b36
+client.unfocused #002b36 #002b36 #586e75 #002b36
+client.urgent #dc322f #dc322f #fdf6e3 #dc322f

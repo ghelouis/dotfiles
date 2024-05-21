@@ -1,0 +1,75 @@
+-- conky config
+-- doc:
+--   http://conky.sourceforge.net/config_settings.html
+--   http://conky.sourceforge.net/variables.html
+--   https://i3wm.org/docs/user-contributed/conky-i3bar.html
+
+conky.config = {
+  out_to_x = false,
+  own_window = false,
+  out_to_console = true,
+  background = false,
+  max_text_width = 0,
+  short_units = true,
+  update_interval = 2.0,
+};
+
+
+-- JSON for i3bar
+-- to use icons install font awesome
+
+conky.text = [[
+[
+  ${if_match "${mpd_status}" == "Playing"}
+  {
+    "full_text": "♪ ${mpd_smart}"
+  },
+  ${endif}
+  {
+    "full_text": "${fs_free /}",
+    "color": "\#66FFFF"
+  },
+  {
+    "full_text" : "CPU ${cpu cpu0}%",
+    "color" : "\#66ABFF"
+  },
+  {
+    "full_text" : "RAM ${memperc}%",
+    "color" : ${if_match ${memperc} < 90} "\#7366FF" ${else} "\#FF0000" ${endif}
+  },
+  {
+    ${if_match "${exec cat /sys/class/power_supply/AC/online}" == "1"}
+      "full_text" : " ${battery_percent BAT0}%",
+      "color" : "\#C666FF"
+    ${else}
+      ${if_match ${battery_percent BAT0} > 20} 
+        "full_text" : " ${battery_percent BAT0}%",
+        "color" : "\#C666FF"
+      ${else}
+        "full_text" : " ${battery_percent BAT0}%",
+        "color" : "\#FF0000"
+      ${endif}
+    ${endif}
+  },
+  {
+    ${if_match "${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f8 | cut -c2- | rev | cut -c2- | rev}" == "on"}
+      "full_text" : " ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6 | cut -c2- | rev | cut -c2- | rev}",
+    ${else}
+      "full_text" : " muted",
+    ${endif}
+    "color" : "\#FF6690"
+  },
+  {
+    "full_text" : " ${exec brightness}",
+    "color": "\#FFE266"
+  },
+  {
+    "full_text": "${time  %d/%m/%Y}",
+    "color": "\#C8FF66"
+  },
+  {
+    "full_text": "${tztime Africa/Johannesburg %H:%M}",
+    "color": "\#75FF66"
+  }
+],
+]];
