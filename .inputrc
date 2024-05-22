@@ -7,7 +7,7 @@ $endif
 # display matches if more than one possible completion
 set show-all-if-ambiguous on
 
-# perform filename matchinga and completion in a case-insensitive fashion
+# perform filename matching and completion in a case-insensitive fashion
 set completion-ignore-case on
 
 # display different colors per file type in completions
