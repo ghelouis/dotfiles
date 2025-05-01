@@ -1,7 +1,15 @@
-
+-- inspired by:
 -- https://www.digitalocean.com/community/tutorials/how-to-customize-the-postgresql-prompt-with-psqlrc-on-ubuntu-14-04
 
+-- custom prompt
 \set PROMPT1 '%M:%> %n@%/%R%#%x '
 \set PROMPT2 '%M %n@%/%R %# '
+
+-- expanded table format
 \x auto
+
+-- null display
+\pset null '[null]'
+
+-- autoconnect to my_db
 -- \c my_db
