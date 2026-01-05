@@ -1,5 +1,5 @@
 [user]
-	email = 1146421+ghelouis@users.noreply.github.com
+	email = ghelouis@users.noreply.github.com
 	name = Guillaume Hélouis
 [push]
 	default = simple
@@ -15,6 +15,7 @@
 	amd = commit --amend
 	d = diff
 	ph = push
+	pf = push -f
 	pl = pull
 	co = checkout
 	cob = checkout -b
