@@ -84,6 +84,9 @@ nnoremap <Tab> gg=G''
 " Space: next buffer
 nnoremap <Space> :bn<Enter>
 
+ " Don't touch unnamed register when pasting over visual selection
+xnoremap <expr> p 'pgv"' . v:register . 'y'
+
 
 " Plugins (see https://github.com/junegunn/vim-plug)
 call plug#begin()
